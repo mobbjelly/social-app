@@ -6,7 +6,9 @@
         <div class="col-lg-4">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    {{ $user->name}}'s Profile
+                    <p class="text-center">
+                        {{ $user->name}}'s Profile
+                    </p>
                 </div>
                 <div class="panel-body">
                     <img src="{{ Storage::url($user->avatar) }}" width="70px" height="70px">
