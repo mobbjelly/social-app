@@ -34,6 +34,13 @@ class ProfilesController extends Controller
             'about' => $r->about
         ]);
 
+        if ($r->hasFile('avatar'))
+        {
+            Auth::user()->update([
+                'avatar' => $r->avatar->store('public/avatars')
+            ]);
+        }
+
         Session::flash('success', 'Profile updated.');
         return redirect()->back();
     }
