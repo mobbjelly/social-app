@@ -54,7 +54,12 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('/ids', function () {
        return \App\User::find(4)->friends_ids();
    });
+
    Route::get('/is_friend', function () {
        return \App\User::find(1)->is_friends_with(2);
    });    
+
+   Route::get('/ch', function () {
+       return \App\User::find(5)->add_friend(2);  
+   });
 });
