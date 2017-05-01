@@ -35,15 +35,26 @@ Route::group(['middleware' => ['auth']], function () {
         'as' => 'profile.update'        
    ]); 
 
-   Route::get('/add', function () {
-        return \App\User::find(4)->add_friend(2);
+   Route::get('/add_friend', function () {
+        return \App\User::find(1)->add_friend(4);
    });
 
-   Route::get('/accept', function () {
-        return \App\User::find(2)->accept_friend(4);
+   Route::get('/accept_friend', function () {
+        return \App\User::find(4)->accept_friend(1);
    });
 
    Route::get('/friends', function () {
-        return \App\User::find(2)->friends();
+        return \App\User::find(1)->friends();
    });
+
+   Route::get('/pending_friends', function () {
+       return \App\User::find(4)->pending_friend_requests();
+   });
+
+   Route::get('/ids', function () {
+       return \App\User::find(4)->friends_ids();
+   });
+   Route::get('/is_friend', function () {
+       return \App\User::find(1)->is_friends_with(2);
+   });    
 });

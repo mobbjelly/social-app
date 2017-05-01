@@ -35,6 +35,7 @@ trait Friendable
         }
         return response()->json("fail", 501);                                
     }
+
     public function friends()
     {
         $friends = array();
@@ -56,5 +57,36 @@ trait Friendable
         }
 
         return array_merge($friends, $friends2);
+    }
+
+    public function pending_friend_requests()
+    {
+        $users = array();
+
+        $friendships = Friendship::where('status', 0)
+                                ->where('user_requested', $this->id)
+                                ->get();
+        foreach ($friendships as $friendship ) {
+            array_push($users, \App\User::find($friendship->requester));
+        }
+
+        return $users;
+    }
+
+    public function friends_ids()
+    {
+        return collect($this->friends())->pluck('id');
+    }
+
+    public function is_friends_with($user_id)
+    {
+        if (in_array($user_id, $this->friends_ids()->toArray()))
+        {
+            return response()->json('true', 200);
+        }
+        else
+        {
+            return response()->json('false', 200);
+        }
     }
 }
