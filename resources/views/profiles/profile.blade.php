@@ -11,7 +11,13 @@
                     </p>
                 </div>
                 <div class="panel-body">
-                    <img src="{{ Storage::url($user->avatar) }}" width="70px" height="70px">
+                    <img class="center-block" src="{{ Storage::url($user->avatar) }}" width="70px" height="70px">
+                    <p class="text-center">
+                        @if(Auth::id() == $user->id)
+                            <a href="{{ route('profile.edit')}}" class="btn btn-lg btn-info">Edit your profile</a>
+
+                        @endif
+                    </p>
                 </div>
             </div>
         </div>
