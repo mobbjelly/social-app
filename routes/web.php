@@ -36,10 +36,14 @@ Route::group(['middleware' => ['auth']], function () {
    ]); 
 
    Route::get('/add', function () {
-        return \App\User::first()->add_friend(2);
+        return \App\User::find(4)->add_friend(2);
    });
 
    Route::get('/accept', function () {
         return \App\User::find(2)->accept_friend(4);
+   });
+
+   Route::get('/friends', function () {
+        return \App\User::find(2)->friends();
    });
 });
