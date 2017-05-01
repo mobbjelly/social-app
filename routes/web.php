@@ -35,7 +35,11 @@ Route::group(['middleware' => ['auth']], function () {
         'as' => 'profile.update'        
    ]); 
 
-   Route::get('/hello', function () {
-        return Auth::user()->hello();
+   Route::get('/add', function () {
+        return \App\User::first()->add_friend(2);
+   });
+
+   Route::get('/accept', function () {
+        return \App\User::find(2)->accept_friend(4);
    });
 });
