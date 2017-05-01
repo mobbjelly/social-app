@@ -34,4 +34,8 @@ Route::group(['middleware' => ['auth']], function () {
         'uses' => 'ProfilesController@update',
         'as' => 'profile.update'        
    ]); 
+
+   Route::get('/hello', function () {
+        return Auth::user()->hello();
+   });
 });
