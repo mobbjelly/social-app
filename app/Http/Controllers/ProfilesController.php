@@ -41,7 +41,7 @@ class ProfilesController extends Controller
             ]);
         }
 
-        Session::flash('success', 'Profile updated.');
+        Session::flash('success', '个人资料更新成功！');
         return redirect()->back();
     }
 }

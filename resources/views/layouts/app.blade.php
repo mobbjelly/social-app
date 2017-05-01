@@ -11,6 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    <link rel="stylesheet" href="https://unpkg.com/noty@3.1.0/lib/noty.css">
     <link href="/css/app.css" rel="stylesheet">
 
     <!-- Scripts -->
@@ -86,5 +87,15 @@
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
+    <script>
+        @if(Session::has('success'))
+            new Noty({
+                type: 'success',
+                layout: 'topCenter',
+                timeout: 5000,
+                text: '{{ Session::get('success')}}'
+            }).show();
+        @endif
+    </script>
 </body>
 </html>
