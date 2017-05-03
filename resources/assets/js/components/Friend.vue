@@ -36,6 +36,12 @@
                     .then((res) => {
                         if (res.body == 1) {
                             this.status = 'waiting'
+                            new Noty({
+                                type: 'success',
+                                layout: 'bottomLeft',
+                                timeout: 5000,
+                                text: "Friend request sent."
+                            }).show();
                             this.loading = false
                         }
                     })
@@ -46,6 +52,12 @@
                     .then((res) => {
                         if (res.body == 1) {
                             this.status = 'friends'
+                            new Noty({
+                                type: 'success',
+                                layout: 'bottomLeft',
+                                timeout: 5000,
+                                text: "You are now friends!"
+                            }).show();
                             this.loading = false
                         }
                     })
