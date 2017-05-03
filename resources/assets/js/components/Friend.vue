@@ -1,10 +1,10 @@
 <template>
-    <div class="row">
+    <div>
         <p class="text-center" v-if="loading">
             Loading...
         </p>
         <p class="text-center" v-else>
-            <button class="btn btn-success" v-if="status === 0">Add Friend</button>
+            <button class="btn btn-success" v-if="status === 0" @click="add_friend">Add Friend</button>
             <button class="btn btn-success" v-if="status === 'pending'">Accept Friend</button>
             <span class="text-success" v-if="status === 'waiting'">Waiting for response</span>
             <span class="btn btn-success" v-if="status === 'friends'">Friends</span>
@@ -27,6 +27,18 @@
             return {
                 status: '',
                 loading: true
+            }
+        },
+        methods: {
+            add_friend() {
+                this.loading = true
+                this.$http.get('/add_friend/' + this.profile_user_id)
+                    .then((res) => {
+                        if (res.body == 1) {
+                            this.status = 'waiting'
+                            this.loading = false
+                        }
+                    })
             }
         }
     }
