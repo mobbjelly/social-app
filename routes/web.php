@@ -19,6 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
+Route::get('/check_relationship_status/{id}', function ($id) {
+    return \App\User::find($id);
+});
+
 Route::group(['middleware' => ['auth']], function () {
    Route::get('/profile/{slug}', [
         'uses' => 'ProfilesController@index',
