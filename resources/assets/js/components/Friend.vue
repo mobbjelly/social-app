@@ -5,9 +5,9 @@
         </p>
         <p class="text-center" v-else>
             <button class="btn btn-success" v-if="status === 0" @click="add_friend">Add Friend</button>
-            <button class="btn btn-success" v-if="status === 'pending'">Accept Friend</button>
+            <button class="btn btn-success" v-if="status === 'pending'" @click="accept_friend">Accept Friend</button>
             <span class="text-success" v-if="status === 'waiting'">Waiting for response</span>
-            <span class="btn btn-success" v-if="status === 'friends'">Friends</span>
+            <span class="text-success" v-if="status === 'friends'">Friends</span>
         </p>
     </div>
 </template>
@@ -36,6 +36,16 @@
                     .then((res) => {
                         if (res.body == 1) {
                             this.status = 'waiting'
+                            this.loading = false
+                        }
+                    })
+            },
+            accept_friend() {
+                this.loading = true
+                this.$http.get('/accept_friend/' + this.profile_user_id)
+                    .then((res) => {
+                        if (res.body == 1) {
+                            this.status = 'friends'
                             this.loading = false
                         }
                     })
