@@ -19,9 +19,6 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/check_relationship_status/{id}', function ($id) {
-    return \App\User::find($id);
-});
 
 Route::group(['middleware' => ['auth']], function () {
    Route::get('/profile/{slug}', [
@@ -66,4 +63,9 @@ Route::group(['middleware' => ['auth']], function () {
    Route::get('/ch', function () {
        return \App\User::find(5)->add_friend(2);  
    });
+
+   Route::get('/check_relationship_status/{id}', [
+       'uses' => 'FriendshipsController@check',
+       'as' => 'check'
+   ]);
 });
