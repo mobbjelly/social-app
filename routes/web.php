@@ -26,7 +26,7 @@ Route::group(['middleware' => ['auth']], function () {
         'as' => 'profile'        
    ]); 
 
-   Route::get('/profile/edit/profile', [
+   Route::get('/profile/{id}/edit', [
         'uses' => 'ProfilesController@edit',
         'as' => 'profile.edit'        
    ]); 
@@ -36,33 +36,6 @@ Route::group(['middleware' => ['auth']], function () {
         'as' => 'profile.update'        
    ]); 
 
-   Route::get('/add_friend', function () {
-        return \App\User::find(1)->add_friend(4);
-   });
-
-   Route::get('/accept_friend', function () {
-        return \App\User::find(4)->accept_friend(1);
-   });
-
-   Route::get('/friends', function () {
-        return \App\User::find(1)->friends();
-   });
-
-   Route::get('/pending_friends', function () {
-       return \App\User::find(4)->pending_friend_requests();
-   });
-
-   Route::get('/ids', function () {
-       return \App\User::find(4)->friends_ids();
-   });
-
-   Route::get('/is_friend', function () {
-       return \App\User::find(1)->is_friends_with(2);
-   });    
-
-   Route::get('/ch', function () {
-       return \App\User::find(5)->add_friend(2);  
-   });
 
    Route::get('/check_relationship_status/{id}', [
        'uses' => 'FriendshipsController@check',

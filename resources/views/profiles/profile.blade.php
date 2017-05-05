@@ -19,7 +19,7 @@
                     <br>
                     <p class="text-center">
                         @if(Auth::id() == $user->id)
-                            <a href="{{ route('profile.edit')}}" class="btn btn-lg btn-info">Edit your profile</a>
+                            <a href="{{ route('profile.edit', ['id' => Auth::id()])}}" class="btn btn-lg btn-info">Edit your profile</a>
 
                         @endif
                     </p>
