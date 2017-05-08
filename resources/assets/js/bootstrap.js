@@ -10,6 +10,7 @@ window._ = require('lodash');
 window.$ = window.jQuery = require('jquery');
 require('bootstrap-sass');
 window.Noty = require('noty');
+window.Pusher = require('pusher-js');
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
  * using reactive data binding and reusable components. Vue's API is clean
@@ -41,5 +42,10 @@ import Echo from "laravel-echo"
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: 'd37597d9f0bd6e0d3009'
+    key: 'd37597d9f0bd6e0d3009',
+    cluster: 'ap1'
 });
+
+Pusher.log = function(message) {
+    window.console.log(message)
+}
