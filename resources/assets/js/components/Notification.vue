@@ -12,8 +12,13 @@
       listen() {
         Echo.private('App.User.' + this.id)
             .notification(notification => {
-              alert("new notification")
-              console.log(notification);
+               new Noty({
+                type: 'success',
+                layout: 'bottomLeft',
+                timeout: 5000,
+                text: notification.name + notification.message
+              }).show();
+              document.getElementById("noty_audio").play()
             })
       }
     }

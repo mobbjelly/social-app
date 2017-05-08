@@ -84,6 +84,9 @@
         
         @yield('content')
         <notification id="{{ Auth::id() }}"></notification>
+        <audio id="noty_audio">
+            <source src="{{ asset('audio/notify.mp3') }}" >
+        </audio>
     </div>
 
     <!-- Scripts -->
