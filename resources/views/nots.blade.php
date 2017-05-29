@@ -11,7 +11,7 @@
                     <ul class="list-group">
                       @foreach($nots as $not)
                         <li class="list-group-item">
-                          {{ $not->data['name'] }} &nbsp; {{ $not->data['message']}} <span class="pull-right">{{  $not->created_at->diffForHumans() }}</span>
+                          <a href="/profile/{{ str_slug($not->data['name']) }}">{{ $not->data['name'] }}</a> &nbsp; {{ $not->data['message']}} <span class="pull-right">{{  $not->created_at->diffForHumans() }}</span>
                         </li>
                       @endforeach
 
