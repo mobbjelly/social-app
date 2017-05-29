@@ -18,6 +18,9 @@
                 timeout: 5000,
                 text: notification.name + notification.message
               }).show();
+
+              this.$store.commit("add_not", notification)
+
               document.getElementById("noty_audio").play()
             })
       }
