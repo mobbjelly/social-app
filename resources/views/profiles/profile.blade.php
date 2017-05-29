@@ -11,7 +11,7 @@
                     </p>
                 </div>
                 <div class="panel-body">
-                    <img class="center-block img-circle img-thumbnail" src="{{ Storage::url($user->avatar) }}" width="70px" height="70px">
+                    <img class="center-block img-circle img-thumbnail" src="{{ $user->avatar }}" width="70px" height="70px">
                     <br>
                     <p class="text-center">
                         {{ $user->profile->location }}

@@ -2,14 +2,14 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
-                <div class="panel panel-default">
+                <div class="panel panel-default" v-for="post in posts">
                     <div class="panel-heading text-center">
-                        Jeremy Chen
+                        {{ post.user.name }}
                     </div>
 
                     <div class="panel-body">
                         <p class="text-center">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Est ex fugiat laboriosam omnis, porro quidem ratione repellat rerum sunt voluptatibus.
+                            {{ post.content }}
                         </p>
                     </div>
                 </div>
@@ -32,6 +32,12 @@
                             this.$store.commit("add_post", post)
                         })
                     })
+            }
+        },
+
+        computed: {
+            posts() {
+                return this.$store.getters.all_posts
             }
         }
     }
