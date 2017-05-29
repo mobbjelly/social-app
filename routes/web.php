@@ -49,7 +49,7 @@ Route::group(['middleware' => ['auth']], function () {
 
    Route::get('/accept_friend/{id}',[
         'uses' => "FriendshipsController@accept_friend",
-        'as' => 'accept_frfriend'
+        'as' => 'accept_friend'
    ]);
 
    Route::get('/get_unread', function () {
@@ -63,6 +63,11 @@ Route::group(['middleware' => ['auth']], function () {
 
    Route::post('/create/post', [
        'uses' => 'PostController@store'
+   ]);
+
+   Route::get('/feed', [
+       'uses' => 'FeedsController@feed',
+       'as' => 'feed'
    ]);
 
 });

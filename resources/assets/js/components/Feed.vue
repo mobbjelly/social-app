@@ -20,6 +20,19 @@
 
 <script>
     export default {
+        mounted() {
+            this.get_feed()
+        },
 
+        methods: {
+            get_feed() {
+                this.$http.get('/feed')
+                    .then(res => {
+                        res.body.forEach(post => {
+                            this.$store.commit("add_post", post)
+                        })
+                    })
+            }
+        }
     }
 </script>
