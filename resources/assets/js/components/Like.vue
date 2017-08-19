@@ -5,10 +5,10 @@
       <img :src="like.user.avatar" alt="" width="40px" height="40px" class="avatar-likes">
     </span>
     <hr>
-    <button class="btn btn-primary" v-if="!auth_user_likes_post">
+    <button class="btn btn-xs btn-primary" v-if="!auth_user_likes_post" @click="like()">
       Like this post
     </button>
-    <button class="btn btn-danger" v-else>
+    <button class="btn btn-xs btn-danger" v-else @click="unlike()">
       Unlike this post
     </button>
   </div>
@@ -48,6 +48,43 @@
         return this.$store.state.posts.find(post => {
           return post.id === this.id
         })
+      }
+    },
+
+    methods: {
+      like() {
+        this.$http.get("/like/" + this.id)
+          .then(res => {
+            
+            this.$store.commit('update_post_likes', {
+              id: this.id,
+              like:res.body
+            })
+
+            new Noty({
+                type: 'success',
+                layout: 'topCenter',
+                timeout: 3000,
+                text: "You successfully like this post!"
+            }).show();
+          })
+      },
+      unlike() {
+        this.$http.get("/unlike/" + this.id)
+          .then(res => {
+            
+            this.$store.commit('unlike_post', {
+              post_id: this.id,
+              like_id: res.body
+            })
+
+            new Noty({
+                type: 'success',
+                layout: 'topCenter',
+                timeout: 3000,
+                text: "You successfully unlike this post!"
+            }).show();
+          })
       }
     }
   }
