@@ -3,14 +3,21 @@
         <div class="row">
             <div class="col-lg-10 col-lg-offset-1">
                 <div class="panel panel-default" v-for="post in posts">
-                    <div class="panel-heading text-center">
+                    <div class="panel-heading">
+                        <img :src="post.user.avatar" alt="" width="40px" height="40px" class="avatar-feed">
                         {{ post.user.name }}
+                        <span class="pull-right">
+                            {{ post.created_at}}
+                        </span>
                     </div>
 
                     <div class="panel-body">
                         <p class="text-center">
                             {{ post.content }}
                         </p>
+
+                        <Like :id="post.id"></Like>
+                        
                     </div>
                 </div>
             </div>
@@ -19,9 +26,16 @@
 </template>
 
 <script>
+
+    import Like from './Like.vue'
+
     export default {
         mounted() {
             this.get_feed()
+        },
+
+        components: {
+            Like
         },
 
         methods: {
@@ -42,3 +56,11 @@
         }
     }
 </script>
+
+<style>
+    .avatar-feed {
+        -webkit-border-radius: 50%;
+        -moz-border-radius: 50%;
+        border-radius: 50%;
+    }
+</style>
