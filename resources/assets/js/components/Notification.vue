@@ -16,7 +16,7 @@
                 type: 'success',
                 layout: 'bottomLeft',
                 timeout: 5000,
-                text: notification.name + notification.message
+                text: notification.name + " " + notification.message
               }).show();
 
               this.$store.commit("add_not", notification)

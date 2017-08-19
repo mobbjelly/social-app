@@ -83,6 +83,9 @@
                 </div>
             </div>
         </nav>
+        @if(Auth::check())
+            <search></search>
+        @endif
         
         @yield('content')
 
